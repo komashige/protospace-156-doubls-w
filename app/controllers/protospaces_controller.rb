@@ -27,8 +27,8 @@ class ProtospacesController < ApplicationController
 
   private
 
-  def tweet_params
-    params.require(:protospace).permit(:name, :image, :text)
+  def protospace_params
+    params.require(:protospace).permit(:title, :image, :catch_copy, :concept)
   end
 
   def move_to_index
