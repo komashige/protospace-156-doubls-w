@@ -1,4 +1,5 @@
 class ProtospacesController < ApplicationController
+  before_action :move_to_index, except: [:index, :show]
 
 
   def index
@@ -10,8 +11,13 @@ class ProtospacesController < ApplicationController
   end
 
   def create
-    Protospace.create(protospace_params)
-    redirect_to '/'
+    @protospace = Protospace.new(protospace_params)
+  
+    if @protospace.save
+      redirect_to root_path
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def destroy
@@ -27,8 +33,8 @@ class ProtospacesController < ApplicationController
 
   private
 
-  def tweet_params
-    params.require(:protospace).permit(:name, :image, :text)
+  def protospace_params
+    params.require(:protospace).permit(:title, :image, :catch_copy, :concept)
   end
 
   def move_to_index
