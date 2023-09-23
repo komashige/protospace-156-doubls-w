@@ -3,6 +3,7 @@ class ProtospacesController < ApplicationController
 
   def index
     @protospaces = Protospace.all
+    @user = current_user 
   end
 
   def new
@@ -28,7 +29,7 @@ class ProtospacesController < ApplicationController
   private
 
   def tweet_params
-    params.require(:protospace).permit(:name, :image, :text)
+    params.require(:protospace).permit(:name, :image, :text).merge(user_id: current_user.id)
   end
 
   def move_to_index
