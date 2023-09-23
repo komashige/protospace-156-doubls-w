@@ -4,9 +4,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-<<<<<<< Updated upstream
-end
-=======
   # validates :password, presence: true, length: { minimum: 6 }
   # validates :password_confirmation, presence: true
   # validate :passwords_match
@@ -24,4 +21,3 @@ end
       end
     end
 end
->>>>>>> Stashed changes
