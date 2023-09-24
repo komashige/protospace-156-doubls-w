@@ -21,10 +21,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_22_101010) do
   end
 
   create_table "users", charset: "utf8", force: :cascade do |t|
-    t.text "profile"
-    t.text "group"
-    t.text "positio"
-    t.string "name"
+    t.text "profile", null: false
+    t.text "group", null: false
+    t.text "position", null: false
+    t.string "name", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"

@@ -4,6 +4,8 @@ class ProtospacesController < ApplicationController
 
   def index
     @protospaces = Protospace.all
+    # binding.pry
+    @user = current_user 
   end
 
   def new
@@ -26,9 +28,20 @@ class ProtospacesController < ApplicationController
     redirect_to root_path
   end
 
+  def edit
+    @protospace = Protospace.find(params[:id])
+  end
+
+  def update
+    protospace = Protospace.find(params[:id])
+    protospace.update(protospace_params)
+    redirect_to root_path
+  end
+
   def show
-    @protospace = Protospace.new
-  # @comments = @tweet.comments.includes(:user)
+    # @protospace = Protospace.new
+    # @comments = @protospace.comments.includes(:user)
+    @protospace = Protospace.find(params[:id])
   end
 
   private
