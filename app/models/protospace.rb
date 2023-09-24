@@ -4,6 +4,6 @@ class Protospace< ApplicationRecord
   validates :concept, presence: true
   validates :image, presence: true
 
-  belongs_to :user
+  # belongs_to :user
 end
 

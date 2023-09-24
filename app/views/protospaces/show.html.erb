@@ -8,8 +8,8 @@
       <%= link_to "by プロトタイプの投稿者", root_path, class: :prototype__user %>
       <%# プロトタイプの投稿者とログインしているユーザーが同じであれば以下を表示する %>
         <div class="prototype__manage">
-          <%= link_to "編集する", edit_protospace_path(@protospace.id), class: :prototype__btn %>
-          <%= link_to "削除する", root_path, class: :prototype__btn %>
+          <%= link_to "編集する", edit_protospace_path(@protospace.id), class: :prototype__btn %>         
+          <%= link_to "削除する", protospace_path(@protospace.id), data: { turbo_method: :delete },class: :prototype__btn %> 
         </div>
       <%# // プロトタイプの投稿者とログインしているユーザーが同じであれば上記を表示する %>
       <div class="prototype__image">
@@ -19,7 +19,7 @@
         <div class="prototype__detail">
           <p class="detail__title">キャッチコピー</p>
           <p class="detail__message">
-            <%= "プロトタイプのキャッチコピー" %>
+            <%= @protospace.catch_copy %>
           </p>
         </div>
         <div class="prototype__detail">

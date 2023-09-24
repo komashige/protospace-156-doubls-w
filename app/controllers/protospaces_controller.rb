@@ -39,7 +39,7 @@ class ProtospacesController < ApplicationController
   end
 
   def show
-    # @protospace = Protospace.new
+    #@protospace = Protospace.new
     # @comments = @protospace.comments.includes(:user)
     @protospace = Protospace.find(params[:id])
   end

@@ -2,13 +2,7 @@
   <div class="inner">
     <div class="form__wrapper">
       <h2 class="page-heading">プロトタイプ編集</h2>
-      <%= form_with(model: @protospaces, local: true) do |form| %>
-      <%= form.text_field :title, placeholder: "プロトタイプの名称" %>
-      <%= form.text_area :text, placeholder: "キャッチコピー" %>
-      <%= form.text_area :text, placeholder: "コンセプト" %>
-      <%= form.file_field :image, placeholder: "プロトタイプの画像" %>
-      <%= form.submit "送信する" %>
-    <% end %>
+     <%= render partial: "edit", locals: { protospace: @protospace } %>
       <%# 部分テンプレートでフォームを表示する %>
     </div>
   </div>

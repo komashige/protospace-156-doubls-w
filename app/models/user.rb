@@ -9,8 +9,8 @@ class User < ApplicationRecord
   validates :group, presence: true
   validates :position, presence: true
 
-  has_many :protospaces
-  
+  #has_many :protospaces
+
       
   private
 
