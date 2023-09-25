@@ -12,10 +12,10 @@ class ProtospacesController < ApplicationController
 
   def create
     @protospace = Protospace.new(protospace_params)
-  
+
     if @protospace.save
       redirect_to root_path
-    else
+     else
       render :new, status: :unprocessable_entity
     end
   end
@@ -29,12 +29,19 @@ class ProtospacesController < ApplicationController
   def edit
     @protospace = Protospace.find(params[:id])
   end
-
+  
   def update
+    @protospace = Protospace.find(params[:id])
+  
+    if @protospace.update(protospace_params)
+      redirect_to protospace_path(@protospace)
+    else
+      render :edit, status: :unprocessable_entity
+    end
     protospace = Protospace.find(params[:id])
     protospace.update(protospace_params)
-    redirect_to root_path
   end
+
 
   def show
     #@protospace = Protospace.new
