@@ -3,9 +3,7 @@ class ProtospacesController < ApplicationController
 
 
   def index
-    @protospaces = Protospace.all
-    # binding.pry
-    @user = current_user 
+    @protospaces = Protospace.all  
   end
 
   def new
@@ -47,7 +45,8 @@ class ProtospacesController < ApplicationController
   private
 
   def protospace_params
-    params.require(:protospace).permit(:title, :image, :catch_copy, :concept)
+    params.require(:protospace).permit(:title, :catch_copy, :concept, :image).merge(user_id: current_user.id)
+    #params.require(:protospace).permit(:content, :filename,).merge(user_id: current_user.id)
   end
 
   def move_to_index
