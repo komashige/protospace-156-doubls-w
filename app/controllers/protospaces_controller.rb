@@ -3,7 +3,7 @@ class ProtospacesController < ApplicationController
 
 
   def index
-    @protospaces = Protospace.all
+    @protospaces = Protospace.all  
   end
 
   def new
@@ -26,15 +26,27 @@ class ProtospacesController < ApplicationController
     redirect_to root_path
   end
 
+  def edit
+    @protospace = Protospace.find(params[:id])
+  end
+
+  def update
+    protospace = Protospace.find(params[:id])
+    protospace.update(protospace_params)
+    redirect_to root_path
+  end
+
   def show
-    @protospace = Protospace.new
-  # @comments = @tweet.comments.includes(:user)
+    #@protospace = Protospace.new
+    # @comments = @protospace.comments.includes(:user)
+    @protospace = Protospace.find(params[:id])
   end
 
   private
 
   def protospace_params
-    params.require(:protospace).permit(:title, :image, :catch_copy, :concept)
+    params.require(:protospace).permit(:title, :catch_copy, :concept, :image).merge(user_id: current_user.id)
+    #params.require(:protospace).permit(:content, :filename,).merge(user_id: current_user.id)
   end
 
   def move_to_index
