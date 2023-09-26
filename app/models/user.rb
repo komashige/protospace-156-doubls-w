@@ -1,6 +1,4 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
@@ -12,7 +10,6 @@ class User < ApplicationRecord
   has_many :protospaces
   has_many :comments
 
-      
   private
 
     def passwords_match
