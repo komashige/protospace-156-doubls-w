@@ -5,6 +5,7 @@ class ProtospacesController < ApplicationController
 
   def index
     @protospaces = Protospace.includes(:user)
+    
   end
 
   def new
@@ -13,7 +14,7 @@ class ProtospacesController < ApplicationController
 
   def create
     @protospace = Protospace.new(protospace_params)
-
+    
     if @protospace.save
       redirect_to root_path
      else
@@ -43,8 +44,8 @@ class ProtospacesController < ApplicationController
 
 
   def show
-    #@protospace = Protospace.new
-    # @comments = @protospace.comments.includes(:user)
+    @comment = Comment.new
+    @comments = @protospace.comments.includes(:user)
 
   end
 
@@ -52,7 +53,6 @@ class ProtospacesController < ApplicationController
 
   def protospace_params
     params.require(:protospace).permit(:title, :catch_copy, :concept, :image).merge(user_id: current_user.id)
-    #params.require(:protospace).permit(:content, :filename,).merge(user_id: current_user.id)
   end
 
   def move_to_index
