@@ -1,9 +1,10 @@
 class ProtospacesController < ApplicationController
   before_action :move_to_index, except: [:index, :show]
+  before_action :set_protospace, only: [:edit, :show]
 
 
   def index
-    @protospaces = Protospace.all  
+    @protospaces = Protospace.includes(:user)
   end
 
   def new
@@ -27,26 +28,24 @@ class ProtospacesController < ApplicationController
   end
 
   def edit
-    @protospace = Protospace.find(params[:id])
+    
   end
   
   def update
-    @protospace = Protospace.find(params[:id])
+    protospace = Protospace.find(params[:id])
   
-    if @protospace.update(protospace_params)
-      redirect_to protospace_path(@protospace)
+    if protospace.update(protospace_params)
+      redirect_to protospace_path(protospace)
     else
       render :edit, status: :unprocessable_entity
     end
-    protospace = Protospace.find(params[:id])
-    protospace.update(protospace_params)
   end
 
 
   def show
     #@protospace = Protospace.new
     # @comments = @protospace.comments.includes(:user)
-    @protospace = Protospace.find(params[:id])
+
   end
 
   private
@@ -60,5 +59,10 @@ class ProtospacesController < ApplicationController
     unless user_signed_in?
       redirect_to action: :index
     end
+  end
+
+  
+  def set_protospace
+    @protospace = Protospace.find(params[:id])
   end
 end
