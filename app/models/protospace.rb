@@ -8,6 +8,6 @@ class Protospace< ApplicationRecord
 
   belongs_to :user
   has_one_attached :image
-  has_many :comments
+  has_many :comments, dependent: :destroy
 end
 
