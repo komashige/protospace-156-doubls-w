@@ -29,14 +29,14 @@ class ProtospacesController < ApplicationController
   end
 
   def edit
-    
+        
   end
   
   def update
-    protospace = Protospace.find(params[:id])
+    @protospace = Protospace.find(params[:id])
   
-    if protospace.update(protospace_params)
-      redirect_to protospace_path(protospace)
+    if @protospace.update(protospace_params)
+      redirect_to protospace_path(@protospace)
     else
       render :edit, status: :unprocessable_entity
     end
