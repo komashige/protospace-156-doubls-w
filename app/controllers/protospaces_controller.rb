@@ -1,4 +1,5 @@
 class ProtospacesController < ApplicationController
+  before_action :authenticate_user!, only: [:new,:edit, :destroy]
   before_action :move_to_index, except: [:index, :show]
   before_action :set_protospace, only: [:edit, :show]
 
@@ -29,7 +30,9 @@ class ProtospacesController < ApplicationController
   end
 
   def edit
-        
+        unless @protospace.user_id == current_user.id
+          redirect_to action: :index
+        end
   end
   
   def update
